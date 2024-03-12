@@ -1,5 +1,7 @@
 logging
 pathlib
+airflow
+apache-airflow
 requests==2.25.1
 pandas==2.2.1
 psycopg2==2.9.7

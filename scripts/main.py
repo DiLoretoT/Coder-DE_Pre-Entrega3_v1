@@ -28,8 +28,8 @@ def consolidate(endpoint, description):
     """
     url = f'https://api.estadisticasbcra.com{endpoint}'
     response = requests.get(url, headers=headers)
-    start = datetime.now(pytz.timezone('America/Buenos_Aires')) - timedelta(days=30)
-    end = datetime.now(pytz.timezone('America/Buenos_Aires')) - timedelta(days=1)
+    #start = datetime.now(pytz.timezone('America/Buenos_Aires')) - timedelta(days=30)
+    #end = datetime.now(pytz.timezone('America/Buenos_Aires')) - timedelta(days=1)
     
     if response.status_code == 200:
         print(f'Status code: {response.status_code}')         
@@ -39,8 +39,8 @@ def consolidate(endpoint, description):
         df['Date'] = pd.to_datetime(df['Date'])
         df['Date'] = df['Date'].dt.tz_localize('America/Buenos_Aires')        
         df['Concept'] = description        
-        filtered_df = df[(df['Date'] >= start) & (df['Date'] <= end)]                
-        return filtered_df
+        #filtered_df = df[(df['Date'] >= start) & (df['Date'] <= end)]                
+        return df
                 
     else: 
         print(f'Failed to fetch data from {endpoint}. Status code:', response.status_code)
@@ -100,5 +100,7 @@ with engine.connect() as conn, conn.begin():
     
     #Debug print: si el código SQL se ejecuta sin excepciones, muestra el mensaj de éxito. 
     print("La inserción de datos a PRD validando duplicados, fue lograda con éxito.")
+
+
 
 print("Conexión cerrada. Proceso finalizado")

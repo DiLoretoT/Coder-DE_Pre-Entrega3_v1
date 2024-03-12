@@ -5,8 +5,6 @@ from datetime import datetime, timedelta
 from scripts.api_fetch import fetch_and_process_data
 
 default_args = {
-    "start_date": datetime(2024,2,26),
-    "owner": 'TDL',
     "retries": 3,
     "retry_delay": timedelta(minutes=1)
 }
